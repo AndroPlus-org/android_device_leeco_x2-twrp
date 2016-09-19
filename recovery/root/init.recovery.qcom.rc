@@ -13,11 +13,22 @@ service pulldecryptfiles /sbin/pulldecryptfiles.sh
     group root
     seclabel u:r:recovery:s0
 
+service createsym /sbin/createsym.sh
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:recovery:s0
+
+on early-init
+    mkdir /firmware 0771 system system
+
 on fs
     # needed to make qseecomd work in recovery
-    symlink /dev/block/platform/soc/624000.ufshc /dev/block/bootdevice
-    symlink /system/vendor /vendor
-    chmod 0660 /dev/qseecom
+    #symlink /dev/block/platform/soc/624000.ufshc /dev/block/bootdevice
+    start createsym
+    
+    chmod 0664 /dev/qseecom
     chown system drmrpc /dev/qseecom
     chmod 0664 /dev/ion
     chown system system /dev/ion

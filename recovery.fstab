@@ -9,11 +9,10 @@
 
 /modem_fs1      emmc    /dev/block/bootdevice/by-name/modemst1      flags=display="modem_fs1 "Baseband"";backup=1;mounttodecrypt;
 /modem_fs2      emmc    /dev/block/bootdevice/by-name/modemst2      flags=display="modem_fs2 "Baseband"";backup=1;mounttodecrypt;
-/firmware       vfat    /dev/block/bootdevice/by-name/modem         flags=display="Firmware";backup=1;mounttodecrypt;
-/dsp            ext4    /dev/block/bootdevice/by-name/dsp
-/persist        ext4    /dev/block/bootdevice/by-name/persist
-/keymaster      emmc    /dev/block/bootdevice/by-name/keymaster
+/firmware       vfat    /dev/block/bootdevice/by-name/modem         flags=display="Firmware";backup=0;mounttodecrypt;
+/persist        ext4    /dev/block/bootdevice/by-name/persist       flags=display="Persist";backup=0;
+/keymaster      emmc    /dev/block/bootdevice/by-name/keymaster     flags=display="Keymaster";backup=0;
 
 # Removable storage
-/usb_otg        auto    /dev/block/sdg1          /dev/block/sdg     flags=display="USB OTG";storage;wipeingui;removable;
+/usbstorage     auto    /dev/block/sdg1          /dev/block/sdg     flags=display="USB OTG";storage;wipeingui;removable;
 
